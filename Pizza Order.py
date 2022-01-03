@@ -52,11 +52,14 @@ def pizza_order():
                     print(f"\nYou ordered a {size_tag} pizza {pepper_tag} pepperoni.")
                     print(f"Please pay ${price}")
             else:
-                print("Invalid input.")
+                print("Invalid input. Please try again")
+                pizza_order()
         else:
-            print("Invalid input.")
+            print("Invalid input. Please try again")
+            pizza_order()
     else:
-        print("Invalid size input.")
+        print("Invalid size input. Please try again")
+        pizza_order()
 
 
 pizza_order()
