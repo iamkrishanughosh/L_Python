@@ -46,10 +46,10 @@ def pizza_order():
                 if cheese in ['Y', 'y']:
                     price += 1
                     cheese_tag = "extra cheese"
-                    print(f"\nYou ordered a {size_tag} {cheese_tag} pizza {pepper_tag} pepperoni.")
+                    print(f"\nYou ordered a {size_tag} {cheese_tag} pizza {pepper_tag} pepperoni. 🍕")
                     print(f"Please pay ${price}")
                 else:
-                    print(f"\nYou ordered a {size_tag} pizza {pepper_tag} pepperoni.")
+                    print(f"\nYou ordered a {size_tag} pizza {pepper_tag} pepperoni. 🍕")
                     print(f"Please pay ${price}")
             else:
                 print("Invalid input. Please try again")
