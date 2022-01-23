@@ -1550,7 +1550,7 @@ check2win = ""
 print(f"You have {lives} lives left")
 # for life in range(0, lives):
 while life < lives and l2w(blanks) != word:
-    guess = input("Guess a letter: ").lower()
+    guess = input("\nGuess a letter: ").lower()
     if guess in word:
         for position in range(len(word)):
             letter = word[position]
@@ -1561,6 +1561,7 @@ while life < lives and l2w(blanks) != word:
                     print(f"You Win !!!\nWith {lives - life} lives left.")
         print(check2win)
     else:
+        print(l2w(blanks))
         life += 1
         if life == lives:
             print(f"Heheh!!! \nGame Over !!! No lives left. YOU SUCK LOL\nThe word was {word}")
