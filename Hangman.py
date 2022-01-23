@@ -1564,6 +1564,6 @@ while life < lives and l2w(blanks) != word:
         print(l2w(blanks))
         life += 1
         if life == lives:
-            print(f"Heheh!!! \nGame Over !!! No lives left. YOU SUCK LOL\nThe word was {word}")
+            print(f"\nHeheh!!! \nGame Over !!! No lives left. YOU SUCK LOL\nThe word was {word}")
         else:
             print(f"Wrong guess !!! {lives - life} lives left.")
