@@ -1552,6 +1552,8 @@ print(f"You have {lives} lives left")
 while life < lives and l2w(blanks) != word:
     guess = input("\nGuess a letter: ").lower()
     if guess in word:
+        if guess in blanks:
+            print(f"You've already guessed the letter {guess} . No lives lost.")
         for position in range(len(word)):
             letter = word[position]
             if letter == guess:
