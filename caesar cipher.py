@@ -39,8 +39,8 @@ def l2w(list2word):
 def encrypt(user_input, shift_value):
     cipher_text = ""
     for letter in user_input:
-        if letter == " ":
-            new_letter = " "
+        if letter not in alphabet:
+            new_letter = letter
             cipher_text += new_letter
         else:
             position = alphabet.index(letter)
@@ -55,8 +55,8 @@ def encrypt(user_input, shift_value):
 def decrypt(user_input, shift_value):
     cipher_text = ""
     for letter in user_input:
-        if letter == " ":
-            new_letter = " "
+        if letter not in alphabet:
+            new_letter = letter
             cipher_text += new_letter
         else:
             position = alphabet.index(letter)
