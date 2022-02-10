@@ -38,6 +38,12 @@ def compare_scores(user, computer):
         return "You lose 😤"
 
 
+def show_final_scores(p1_cards, p1_score, p2_cards, p2_score):
+    print("\n")
+    print(f"Your final hand : {p1_cards} . Your Score {p1_score}")
+    print(f"Computer's final hand : {p2_cards} . Computer Score {p2_score}")
+
+
 def game_logic():
     user_cards = []
     computer_cards = []
@@ -55,8 +61,9 @@ def game_logic():
         print(f"Your cards : {user_cards} . Your Score {user_score}")
         print(f"Computer's first card : {computer_cards[0]}")
 
-        if user_score == 0 or computer_score == 0 or user_score > 21:
+        if user_score == 0 or user_score > 21:
             is_game_over = True
+            show_final_scores(user_cards, user_score, computer_cards, computer_score)
             print(compare_scores(user_score, computer_score))
             quit()
         else:
@@ -66,12 +73,13 @@ def game_logic():
             else:
                 is_game_over = True
 
-    while computer_score != 0 and computer_score < 17:
+    while computer_score != 0 and computer_score < 17 and computer_score < user_score:
         computer_cards.append(deal_cards())
         computer_score = calculate_score(computer_cards)
-        print(f"Your final hand : {user_cards} . Your Score {user_score}")
-        print(f"Computer's final hand : {computer_cards} . Computer Score {computer_score}")
+        print(f"Your cards : {user_cards} . Your Score {user_score}")
+        print(f"Computer's first card : {computer_cards} . Computer's score {computer_score}")
 
+    show_final_scores(user_cards, user_score, computer_cards, computer_score)
     print(compare_scores(user_score, computer_score))
 
 
