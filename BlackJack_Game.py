@@ -69,8 +69,8 @@ def game_logic():
     while computer_score != 0 and computer_score < 17:
         computer_cards.append(deal_cards())
         computer_score = calculate_score(computer_cards)
-        print(f"Your cards : {user_cards} . Your Score {user_score}")
-        print(f"Computer draws another card : {computer_cards} . Computer Score {computer_score}")
+        print(f"Your final hand : {user_cards} . Your Score {user_score}")
+        print(f"Computer's final hand : {computer_cards} . Computer Score {computer_score}")
 
     print(compare_scores(user_score, computer_score))
 
