@@ -27,7 +27,7 @@ def compare_scores(user, computer):
     elif computer == 0:
         return "Lose, opponent has Blackjack 😱"
     elif user == 0:
-        return "Win with a Blackjack 😎"
+        return "You win with a Blackjack 😎"
     elif user > 21:
         return "You went over. You lose 😭"
     elif computer > 21:
@@ -57,6 +57,8 @@ def game_logic():
 
         if user_score == 0 or computer_score == 0 or user_score > 21:
             is_game_over = True
+            print(compare_scores(user_score, computer_score))
+            quit()
         else:
             user_want_card = input("Do you want to draw another card ? (Y/N) : ")
             if user_want_card in ["Y", "y"]:
