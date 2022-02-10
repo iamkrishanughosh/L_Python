@@ -16,3 +16,61 @@ def calculate_score(cards):
         cards.remove(11)
         cards.append(1)
     return sum(cards)
+
+
+def compare_scores(user, computer):
+    if user > 21 and computer > 21:
+        return "You went over. You lose 😤"
+
+    if user == computer:
+        return "Draw 🙃"
+    elif computer == 0:
+        return "Lose, opponent has Blackjack 😱"
+    elif user == 0:
+        return "Win with a Blackjack 😎"
+    elif user > 21:
+        return "You went over. You lose 😭"
+    elif computer > 21:
+        return "Opponent went over. You win 😁"
+    elif user > computer:
+        return "You win 😃"
+    else:
+        return "You lose 😤"
+
+
+def game_logic():
+    user_cards = []
+    computer_cards = []
+    user_score = 0
+    computer_score = 0
+    is_game_over = False
+
+    for _ in range(2):
+        user_cards.append(deal_cards())
+        computer_cards.append(deal_cards())
+
+    while not is_game_over:
+        user_score = calculate_score(user_cards)
+        computer_score = calculate_score(computer_cards)
+        print(f"Your cards : {user_cards} . Your Score {user_score}")
+        print(f"Computer's first card : {computer_cards[0]}")
+
+        if user_score == 0 or computer_score == 0 or user_score > 21:
+            is_game_over = True
+        else:
+            user_want_card = input("Do you want to draw another card ? (Y/N) : ")
+            if user_want_card in ["Y", "y"]:
+                user_cards.append(deal_cards())
+            else:
+                is_game_over = True
+
+    while computer_score != 0 and computer_score < 17:
+        computer_cards.append(deal_cards())
+        computer_score = calculate_score(computer_cards)
+        print(f"Your cards : {user_cards} . Your Score {user_score}")
+        print(f"Computer draws another card : {computer_cards} . Computer Score {computer_score}")
+
+    print(compare_scores(user_score, computer_score))
+
+
+game_logic()
