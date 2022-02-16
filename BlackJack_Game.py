@@ -103,7 +103,7 @@ def game_logic():
             else:
                 is_game_over = True
 
-    while computer_score != 0 and computer_score < 17 and computer_score < user_score:
+    while computer_score != 0 and computer_score < 17 and computer_score < user_score <= 21:
         computer_cards.append(deal_cards())
         computer_score = calculate_score(computer_cards)
         print(f"Your cards : {user_cards} . Your Score {user_score}")
