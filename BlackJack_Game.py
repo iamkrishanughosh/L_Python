@@ -10,6 +10,15 @@ def bet_func():
     return user_bet
 
 
+def up(str_a):
+    if str_a in ["Y", "y"]:
+        b = True
+    else:
+        print(f"You cashed out {user_credits} coins.")
+        b = False
+    return b
+
+
 # Function to deal a single card at a time.
 def deal_cards():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
@@ -117,30 +126,18 @@ while user_credits > 0 and user_wants_to_play:
         user_credits = user_credits + (bet * 2)
         print(f"Yay !!! You now have {user_credits} coins.")
         user_play = input("Press Y to play again or Press N to cash-out : ")
-        if user_play in ["Y", "y"]:
-            user_wants_to_play = True
-        else:
-            print(f"You cashed out {user_credits} coins.")
-            user_wants_to_play = False
+        user_wants_to_play = up(user_play)
     elif win_loss_4_bet in ["T", "t"]:
         user_credits = user_credits + bet
         print(f"That's a draw. You still have {user_credits} coins.")
         user_play = input("Press Y to play again or Press N to cash-out : ")
-        if user_play in ["Y", "y"]:
-            user_wants_to_play = True
-        else:
-            print(f"You cashed out {user_credits} coins.")
-            user_wants_to_play = False
+        user_wants_to_play = up(user_play)
     else:
         user_credits = user_credits
         if user_credits > 0:
             print(f"Oh noooo !!! You now have {user_credits} coins left.")
             user_play = input("Press Y to play again or Press N to cash-out : ")
-            if user_play in ["Y", "y"]:
-                user_wants_to_play = True
-            else:
-                print(f"You cashed out {user_credits} coins.")
-                user_wants_to_play = False
+            user_wants_to_play = up(user_play)
         else:
             print(f"Oh Nooo !!! You ran out of coins.")
             user_wants_to_play = False
