@@ -1,7 +1,13 @@
 import random
 
-user_credits = 500
+initial_user_credits = 500
+user_credits = initial_user_credits
 user_wants_to_play = True
+
+
+def bet_func():
+    user_bet = int(input("Place your bet : "))
+    return user_bet
 
 
 # Function to deal a single card at a time.
@@ -21,27 +27,8 @@ def calculate_score(cards):
     return sum(cards)
 
 
-# Function to compare scores to declare the winner.
-# def compare_scores(user, computer):
-#     if user > 21 and computer > 21:
-#         return "You went over. You lose 😤"
-#
-#     if user == computer:
-#         return "Draw 🙃"
-#     elif computer == 0:
-#         return "Lose, opponent has Blackjack 😱"
-#     elif user == 0:
-#         return "You win with a Blackjack 😎"
-#     elif user > 21:
-#         return "You went over. You lose 😭"
-#     elif computer > 21:
-#         return "Opponent went over. You win 😁"
-#     elif user > computer:
-#         return "You win 😃"
-#     else:
-#         return "You lose 😤"
-
-
+# Function to compare scores to declare the winner. Return string is used to notify the betting system about the
+# results regarding win/loss/tie
 def compare_scores(user, computer):
     if user > 21 and computer > 21:
         print("You went over. You lose 😤")
@@ -120,21 +107,24 @@ def game_logic():
 
 while user_credits > 0 and user_wants_to_play:
     print(f"You currently have {user_credits} coins.")
-    bet = int(input("Place your bet : "))
+    bet = int(bet_func())
+    while bet > user_credits:
+        print(f"You cannot place bet of more than {user_credits} coins.")
+        bet = int(bet_func())
     user_credits -= bet
     win_loss_4_bet = game_logic()
     if win_loss_4_bet in ["W", "w"]:
         user_credits = user_credits + (bet * 2)
         print(f"Yay !!! You now have {user_credits} coins.")
         user_play = input("Press Y to play again or Press N to cash-out : ")
-        if user_play in ["Y","y"]:
+        if user_play in ["Y", "y"]:
             user_wants_to_play = True
         else:
             print(f"You cashed out {user_credits} coins.")
             user_wants_to_play = False
     elif win_loss_4_bet in ["T", "t"]:
         user_credits = user_credits + bet
-        print(f"Thats a draw. You still have {user_credits} coins.")
+        print(f"That's a draw. You still have {user_credits} coins.")
         user_play = input("Press Y to play again or Press N to cash-out : ")
         if user_play in ["Y", "y"]:
             user_wants_to_play = True
