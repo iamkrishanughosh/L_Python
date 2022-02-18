@@ -6,11 +6,17 @@ user_wants_to_play = True
 
 
 def bet_func():
-    user_bet = int(input("Place your bet : "))
+    user_bet = input("Place your bet : ")
+    while not user_bet.isnumeric():
+        print("Please enter a valid bet.")
+        user_bet = input("Place your bet : ")
     return user_bet
 
 
-def up(str_a):
+def user_wants_play_func(str_a):
+    while str_a not in ["Y", "y", "N", "n"]:
+        print("Invalid Input. Please try again..")
+        str_a = input("Press Y to play again or Press N to cash-out : ")
     if str_a in ["Y", "y"]:
         b = True
     else:
@@ -98,6 +104,9 @@ def game_logic():
             break
         else:
             user_want_card = input("Do you want to draw another card ? (Y/N) : ")
+            while user_want_card not in ["Y", "y", "N", "n"]:
+                print("Invalid Input. Please try again..")
+                user_want_card = input("Do you want to draw another card ? (Y/N) : ")
             if user_want_card in ["Y", "y"]:
                 user_cards.append(deal_cards())
             else:
@@ -121,23 +130,24 @@ while user_credits > 0 and user_wants_to_play:
         print(f"You cannot place bet of more than {user_credits} coins.")
         bet = int(bet_func())
     user_credits -= bet
+    # odds = int(input("Enter odds : "))
     win_loss_4_bet = game_logic()
     if win_loss_4_bet in ["W", "w"]:
         user_credits = user_credits + (bet * 2)
         print(f"Yay !!! You now have {user_credits} coins.")
         user_play = input("Press Y to play again or Press N to cash-out : ")
-        user_wants_to_play = up(user_play)
+        user_wants_to_play = user_wants_play_func(user_play)
     elif win_loss_4_bet in ["T", "t"]:
         user_credits = user_credits + bet
         print(f"That's a draw. You still have {user_credits} coins.")
         user_play = input("Press Y to play again or Press N to cash-out : ")
-        user_wants_to_play = up(user_play)
+        user_wants_to_play = user_wants_play_func(user_play)
     else:
         user_credits = user_credits
         if user_credits > 0:
             print(f"Oh noooo !!! You now have {user_credits} coins left.")
             user_play = input("Press Y to play again or Press N to cash-out : ")
-            user_wants_to_play = up(user_play)
+            user_wants_to_play = user_wants_play_func(user_play)
         else:
             print(f"Oh Nooo !!! You ran out of coins.")
             user_wants_to_play = False
