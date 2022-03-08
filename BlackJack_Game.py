@@ -25,6 +25,17 @@ def user_wants_play_func(str_a):
     return b
 
 
+def credit_bonus():
+    uc = user_credits
+    value = input("Enter test bonus : ")
+    while not value.isnumeric():
+        print("Please enter a valid input.")
+        value = input("Enter test bonus : ")
+    value = int(value)
+    uc = ((value/100) * uc) + uc
+    return uc
+
+
 # Function to deal a single card at a time.
 def deal_cards():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
@@ -135,6 +146,7 @@ while user_credits > 0 and user_wants_to_play:
     if win_loss_4_bet in ["W", "w"]:
         user_credits = user_credits + (bet * 2)
         print(f"Yay !!! You now have {user_credits} coins.")
+        user_credits = credit_bonus()
         user_play = input("Press Y to play again or Press N to cash-out : ")
         user_wants_to_play = user_wants_play_func(user_play)
     elif win_loss_4_bet in ["T", "t"]:
