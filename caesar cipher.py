@@ -46,7 +46,7 @@ def encrypt(user_input, shift_value):
             position = alphabet.index(letter)
             new_position = position + shift_value
             if new_position > 25:
-                new_position = (new_position - 1) % 25
+                new_position = new_position % 25
             new_letter = alphabet[new_position]
             cipher_text += new_letter
     return cipher_text
@@ -63,7 +63,8 @@ def decrypt(user_input, shift_value):
             new_position = position - shift_value
             # print(new_position)
             if new_position < 0:
-                new_position = (26 + new_position) % 26
+                # new_position = (26 + new_position) % 26
+                new_position = new_position % 25
                 # print(new_position)
             new_letter = alphabet[new_position]
             cipher_text += new_letter
@@ -71,7 +72,7 @@ def decrypt(user_input, shift_value):
 
 
 def hack(user_input):
-    for brute in range(1, 51):
+    for brute in range(1, 53):
         cipher_text = ""
         for letter in user_input:
             if letter not in alphabet:
@@ -81,7 +82,7 @@ def hack(user_input):
                 position = alphabet.index(letter)
                 new_position = position - brute
                 if new_position < 0:
-                    new_position = (26 + new_position) % 26
+                    new_position = new_position % 25
                     # print(new_position)
                 new_letter = alphabet[new_position]
                 cipher_text += new_letter
@@ -98,7 +99,7 @@ elif choice in ["d", "D"]:
     message = input("Enter message to decrypt : ")
     shift = int(input("Enter encryption key : "))
     decrypted_text = decrypt(message, shift)
-    print(f"The decrypted text is {decrypted_text}\n")
+    print(f"The decrypted text : {decrypted_text}\n")
 elif choice in ["H", "h"]:
     hack(input("Enter encrypted text : "))
 else:
