@@ -344,6 +344,8 @@ def game_logic():
     points = 0
     a_dic = {}
     b_dic = {}
+    with open("high_low_score.txt") as hs:
+        high_score = int(hs.read())
 
     for _ in range(2):
         a_dic = picker()
@@ -351,9 +353,10 @@ def game_logic():
 
     a_followers = list(a_dic.values())[1]
     b_followers = list(b_dic.values())[1]
-    print(a_followers)
-    print(b_followers)
+    # print(a_followers)
+    # print(b_followers)
 
+    print(f"High Score : {high_score}")
     print(f"A - {printable(a_dic)}")
     print(f"B - {printable(b_dic)}")
     guess = input("Guess who has higher number of followers on Instagram (A/B) : ")
@@ -395,6 +398,10 @@ def game_logic():
         else:
             alive = False
             print(f"Wrong guess. Game Over. You scored {points} points.")
+        if points > high_score:
+            # print("New High Score")
+            with open("high_low_score.txt", mode="w") as hs:
+                hs.write(f"{points}")
 
 
 game_logic()
