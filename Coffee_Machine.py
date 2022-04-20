@@ -48,6 +48,7 @@ while on:
         elif resource_in_machine['Coffee'] < drink[user_input]['Coffee']:
             print("Sorry ! Not enough Coffee.")
         else:
+            print(f"Price of {user_input} is ₹{drink[user_input]['Money']}.")
             print("\nPay Here :")
             inr1 = int(input("Enter number of ₹ 1 notes/coins : "))
             inr2 = int(input("Enter number of ₹ 2 notes/coins : "))
