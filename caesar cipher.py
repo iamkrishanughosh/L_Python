@@ -8,25 +8,6 @@
 
 alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
             "v", "w", "x", "y", "z"]
-logo = """           
- ,adPPYba, ,adPPYYba,  ,adPPYba, ,adPPYba, ,adPPYYba, 8b,dPPYba,  
-a8"     "" ""     `Y8 a8P_____88 I8[    "" ""     `Y8 88P'   "Y8  
-8b         ,adPPPPP88 8PP"""""""  `"Y8ba,  ,adPPPPP88 88          
-"8a,   ,aa 88,    ,88 "8b,   ,aa aa    ]8I 88,    ,88 88          
- `"Ybbd8"' `"8bbdP"Y8  `"Ybbd8"' `"YbbdP"' `"8bbdP"Y8 88   
-            88             88                                 
-           ""             88                                 
-                          88                                 
- ,adPPYba, 88 8b,dPPYba,  88,dPPYba,   ,adPPYba, 8b,dPPYba,  
-a8"     "" 88 88P'    "8a 88P'    "8a a8P_____88 88P'   "Y8  
-8b         88 88       d8 88       88 8PP""""""" 88          
-"8a,   ,aa 88 88b,   ,a8" 88       88 "8b,   ,aa 88          
- `"Ybbd8"' 88 88`YbbdP"'  88       88  `"Ybbd8"' 88          
-              88                                             
-              88           
-"""
-
-print(logo)
 
 
 def l2w(list2word):
@@ -89,15 +70,26 @@ def hack(user_input):
         print(f"Encryption key {brute} : {cipher_text}")
 
 
-choice = input("Input E for encryption or D for decryption : ")
+choice = input("Input E for encryption or D for decryption or H for brute forcing any encryption: ")
+while choice not in ["e", "E", "d", "D", "h", "H"]:
+    print("Wrong Input. Try again.")
+    choice = input("Input E for encryption or D for decryption or H for brute forcing any encryption: ")
 if choice in ["e", "E"]:
     message = input("Enter message to encrypt : ")
-    shift = int(input("Enter encryption key : "))
+    shift = input("Enter encryption key : ")
+    while not shift.isnumeric():
+        print("Encryption key should be a numeric input.")
+        shift = input("Enter encryption key : ")
+    shift = int(shift)
     encrypted_text = encrypt(message, shift)
-    print(f"After encryption : {encrypted_text}\n")
+    print(f"Encrypted message : {encrypted_text}\n")
 elif choice in ["d", "D"]:
     message = input("Enter message to decrypt : ")
-    shift = int(input("Enter encryption key : "))
+    shift = input("Enter encryption key : ")
+    while not shift.isnumeric():
+        print("Encryption key should be a numeric input.")
+        shift = input("Enter encryption key : ")
+    shift = int(shift)
     decrypted_text = decrypt(message, shift)
     print(f"The decrypted text : {decrypted_text}\n")
 elif choice in ["H", "h"]:
